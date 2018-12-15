@@ -1,0 +1,364 @@
+## ------------- Paint Code Start ------------- ##
+#### referred to tutorial: https://www.youtube.com/watch?v=qEgyGyVA1ZQ ####
+
+from PyQt5 import Qt
+
+from PyQt5.QtCore import pyqtSlot, QTimer, Qt, QPoint
+from PyQt5.QtGui import QImage, QPixmap, QPen, QPainter
+import cv2
+
+
+def initializePaint(self):
+    self.image = None  # this is for the paint Application
+    self.drawing = False
+    self.brushSize = 2
+    self.brushColor = Qt.black
+    self.lastPoint = QPoint(0, 0)
+    self.image = QImage(self.imageLabel.size(), QImage.Format_RGB32)
+    self.image.fill(Qt.white)
+    self.action2px.setShortcut("Ctrl+Shift+2")
+    self.action3px.setShortcut("Ctrl+Shift+3")
+    self.action4px.setShortcut("Ctrl+Shift+4")
+    self.action5px.setShortcut("Ctrl+Shift+5")
+    self.action7px.setShortcut("Ctrl+Shift+7")
+    self.action10px.setShortcut("Ctrl+Shift+0")
+    self.actionRed.setShortcut("Ctrl+Alt+1")
+    self.actionBlack.setShortcut("Ctrl+Alt+5")
+    self.actionGreen.setShortcut("Ctrl+Alt+2")
+    self.actionBlue.setShortcut("Ctrl+Alt+3")
+    self.actionYellow.setShortcut("Ctrl+Alt+4")
+    self.actionClear_Window.setShortcut("Ctrl+c")
+    # self.actionRed
+
+    self.action2px.triggered.connect(self.action2pxClicked)
+    self.action3px.triggered.connect(self.action3pxClicked)
+    self.action4px.triggered.connect(self.action4pxClicked)
+    self.action5px.triggered.connect(self.action5pxClicked)
+    self.action7px.triggered.connect(self.action7pxClicked)
+    self.action10px.triggered.connect(self.action10pxClicked)
+    self.actionRed.triggered.connect(self.actionRedClicked)
+    self.actionGreen.triggered.connect(self.actionGreenClicked)
+    self.actionBlack.triggered.connect(self.actionBlackClicked)
+    self.actionBlue.triggered.connect(self.actionBlueClicked)
+    self.actionYellow.triggered.connect(self.actionYellowClicked)
+    self.actionClear_Window.triggered.connect(self.actionClearClicked)
+
+
+# @pyqtSlot()
+def paintButtonStartClicked(self):
+    self.globalDrawing = True
+    self.imageLabel.setPixmap(QPixmap.fromImage(self.image))
+    # self.imageLabel.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+    self.action2px.triggered.connect(self.action2pxClicked)
+    self.action3px.triggered.connect(self.action3pxClicked)
+    self.action4px.triggered.connect(self.action4pxClicked)
+    self.action5px.triggered.connect(self.action5pxClicked)
+    self.action7px.triggered.connect(self.action7pxClicked)
+    self.action10px.triggered.connect(self.action10pxClicked)
+    self.actionRed.triggered.connect(self.actionRedClicked)
+    self.actionGreen.triggered.connect(self.actionGreenClicked)
+    self.actionBlack.triggered.connect(self.actionBlackClicked)
+    self.actionBlue.triggered.connect(self.actionBlueClicked)
+    self.actionYellow.triggered.connect(self.actionYellowClicked)
+    self.actionClear_Window.triggered.connect(self.actionClearClicked)
+
+
+# @pyqtSlot()
+def paintButtonStopClicked(self):
+    self.drawing = False
+    self.globalDrawing = False
+    self.mordifyProcessedImage()
+    self.displayImage(2)
+
+
+def mousePressEvent(self, event):
+    if event.button() == Qt.LeftButton & self.globalDrawing == True:
+        self.drawing = True
+        self.lastPoint = event.pos()
+        self.lastPoint = self.imageLabel.mapFromParent(event.pos())  # this is working fine now
+        self.imageLabel.setPixmap(QPixmap.fromImage(self.image))
+        # self.lastPoint=self.mapFrom(self.imageLabel)
+        # self.lastPoint=self.mapFrom(self.imageLabel,QPoint(0,0))
+        # print(type(self.lastPoint))
+        # self.lastPoint = self.imageLabel.mousePressEvent()
+        # print(self.lastPoint)
+        # self.imageLabel::mousePressEvent(event):
+        #     self.lastPoint=event.pos()
+        # myObject=self.imageLabel.mousePressEvent.pos          # this function is a head ache, how do I get the postition of mouse within the imageLabel??
+        # print(self.image)
+
+
+def mouseMoveEvent(self, event):
+    if (event.buttons() & Qt.LeftButton) & self.drawing & self.globalDrawing:
+        painter = QPainter(self.image)
+        painter.setPen(QPen(self.brushColor, self.brushSize, Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin))
+        # painter.drawLine(self.lastPoint,event.pos())
+        painter.drawLine(self.imageLabel.mapFromParent(event.pos()), self.lastPoint)
+        # self.lastPoint=self.mapToParent(QPoint(90,100))
+        self.lastPoint = self.imageLabel.mapFromParent(event.pos())  # this is working fine now
+
+        # self.lastPoint = event.pos()
+        # self.imageLabel.update()
+        self.imageLabel.setPixmap(QPixmap.fromImage(self.image))
+
+
+def mouseReleaseEvent(self, event):
+    if event.button == Qt.LeftButton & self.globalDrawing:
+        self.drawing = False
+        self.imageLabel.setPixmap(QPixmap.fromImage(self.image))
+
+
+def paintEvent(self, event):
+    canvasPainter = QPainter(self)
+    canvasPainter.drawImage(self.rect(), self.image, self.image.rect())
+
+
+def action2pxClicked(self):
+    self.brushSize = 2
+
+
+def action3pxClicked(self):
+    self.brushSize = 3
+
+
+def action4pxClicked(self):
+    self.brushSize = 4
+
+
+def action5pxClicked(self):
+    self.brushSize = 5
+
+
+def action7pxClicked(self):
+    self.brushSize = 7
+
+
+def action10pxClicked(self):
+    self.brushSize = 10
+
+
+def actionRedClicked(self):
+    self.brushColor = Qt.red
+
+
+def actionGreenClicked(self):
+    self.brushColor = Qt.green
+
+
+def actionBlackClicked(self):
+    self.brushColor = Qt.black
+
+
+def actionBlueClicked(self):
+    self.brushColor = Qt.blue
+
+
+def actionYellowClicked(self):
+    self.brushColor = Qt.yellow
+
+
+def actionClearClicked(self):
+    self.image.fill(Qt.white)
+    if self.globalDrawing:
+        self.imageLabel.setPixmap(QPixmap.fromImage(self.image))
+        self.imageLabel.update()
+
+
+def mordifyProcessedImage(self):
+    # self.processedImage=cvt2numpy.qt_image_to_array(self.image)
+    self.displayImage(2)
+    # print(type(self.image))
+
+
+## -***********- Paint Code End -************- ##
+
+## Paint 2.0 Start 29th June 2018
+
+# def myPaintButtonClicked(self):
+def nothing(x):
+    pass  # just nothing for everything in opencv:P
+
+
+def draw(self, event, x, y, flags, param):
+    # this is a clever function in OpenCV
+    # if mouse is clicked, then drawing is set to True and function returns.
+    # if mouse is left idle, then drawing is false and the fuction returns
+    # if the mouse is click + drag, then drawing is set to true and the drag function works from next iteration
+    # while if the mouse was not clicked, or no drawing, then drag is not functional because of the If statement in the loop
+    # global drawing We dont need this line, since self variables are global to the class
+
+    if event == cv2.EVENT_LBUTTONDOWN:
+        self.prevX = x
+        self.prevY = y
+        self.drawing = True
+        if self.toggle == 0:  # print circles
+            cv2.circle(self.processedImage, (x, y), self.Size, (self.b, self.g, self.r), -1)
+        elif self.toggle == 1:
+            cv2.rectangle(self.processedImage, (x - self.Size, y - self.Size), (x + self.Size, y + self.Size),
+                          (self.b, self.g, self.r), -1)
+        elif self.toggle == 2:
+            cv2.ellipse(self.processedImage, (x, y), (self.Size + 10, self.Size + 5), 0, 0, 360,
+                        (self.b, self.g, self.r), -1)
+        else:
+            cv2.circle(self.processedImage, (x, y), self.Size, (self.b, self.g, self.r), -1)
+
+    elif event == cv2.EVENT_MOUSEMOVE:
+        if self.drawing == True:
+            if self.toggle == 0:  # print circles
+                cv2.circle(self.processedImage, (x, y), self.Size, (self.b, self.g, self.r), -1)
+            elif self.toggle == 1:
+                cv2.rectangle(self.processedImage, (x - self.Size, y - self.Size), (x + self.Size, y + self.Size),
+                              (self.b, self.g, self.r), -1)
+            elif self.toggle == 2:
+                cv2.ellipse(self.processedImage, (x, y), (self.Size + 10, self.Size + 5), 0, 0, 360,
+                            (self.b, self.g, self.r), -1)
+            elif self.toggle == 3:
+                cv2.line(self.processedImage, (self.prevX, self.prevY), (x, y), (self.b, self.g, self.r), self.Size)
+                self.prevX = x
+                self.prevY = y
+
+        else:
+            return
+    elif event == cv2.EVENT_LBUTTONUP:
+        self.drawing = False
+
+
+def initPaint(self):
+    self.r = 255
+    self.g = 255
+    self.b = 255
+    self.Size = 3
+    self.drawing = False
+    self.toggle = 0
+    cv2.namedWindow('Paint', cv2.WINDOW_AUTOSIZE)  # creates an openCv window
+    cv2.setMouseCallback('Paint', self.draw)
+
+
+def displayMessagePaint(self):
+    print('Instructions: (Press h or H for instructions any time)')
+    print('Here, you can paint the image.')
+    print('To change brush size(increase) press +')
+    print('To change brush size(decrease) press -')
+    print('To change color press (shift) + 1 or 2 or 3 or 5 or 6')
+    print(
+        'Each time you press 1,2,3,4,5,6 with shift, color of selected brush will be displayed here, so no need to cram')
+    print('To change brush shape press 1,2,3,4')
+    print('When you press 1 or 2 or 3, the shape will be displayed here.')
+    print('Press c or C to clear')
+    print('Press esc to quit and save')
+    print('Press shift+e to exit without updating the original image')
+    print('You can clear and exit too, press c or C and press escape or q')
+
+
+    self.paintCodeHelper() # This function helps get the code to getCode() method in GUI in main python file
+
+# @pyqtSlot()
+def paintButtonClicked(self):
+    # self.cap = cv2.VideoCapture(0)
+
+    self.initPaint()
+    self.displayMessagePaint()
+    self.timer = QTimer(self)
+    self.timer.timeout.connect(
+        self.updateFrameForPaint)  # this calls again and again, it works same as a while loop did in the Paint Gui project.
+    self.timer.start(5)
+
+
+def updateFrameForPaint(self):
+    # this function is repeatedly called.
+    # #into the while loop
+    cv2.imshow('Paint', self.processedImage)
+    k = cv2.waitKey(1) & 0xFF
+    if k == ord('q') or k == 27:
+        self.paintStopClicked()
+    elif k == ord('1'):
+        self.toggle = 0  # means you get a circle when you press 1
+        print('Selected Shape: Circle')
+    elif k == ord('2'):
+        self.toggle = 1  # means you get a Rectangle when you press 2
+        print('Selected Shape: Rectangle')
+
+    elif k == ord('3'):
+        self.toggle = 2  # means you get a Ellipse when you press 1
+        print('Selected Shape: Ellipse')
+    elif k == ord('4'):
+        self.toggle = 3  # means a line will be drawn, which is continuous
+        print('Continuous Selection of Points will be drawn')
+
+    elif k == 43:  # shift + = or +, both work, refer https://stackoverflow.com/questions/14494101/using-other-keys-for-the-waitkey-function-of-opencv
+        print('Increasing Size to : ', self.Size + 1)
+        self.Size += 1  # increase the size of the paint brush
+    elif k == 45:  # Shift _ _ or - sign on numpad
+        print('Decreasing Size to : ', self.Size - 1)
+        self.Size -= 1
+    elif k == ord('c') or k == ord('C'):  # then clear the paint
+        self.processedImage = self.originalImage.copy()
+    elif k == 33:  # shift 1
+        # setting up the change in color of the brush,
+        # we can add 100s of colors, but I am adding 5, same as the original paint
+        self.r = 255
+        self.g = 0
+        self.b = 0
+        print('Selected: Red')
+    elif k == 64:  # shift 2
+        self.r = 0
+        self.g = 255
+        self.b = 0
+        print('Selected: Green')
+
+    elif k == 35:  # shift 3, blue
+        self.r = 0
+        self.g = 0
+        self.b = 255
+        print('Selected: Blue')
+
+    elif k == 36:  # shift 4 , orange
+        self.r = 255
+        self.g = 165
+        self.b = 0
+        print('Selected: Orange')
+
+    elif k == 94:  # shift 5 , Yellow
+        self.r = 255
+        self.g = 255
+        self.b = 0
+        print('Selected: Yellow')
+
+    elif k == 37:  # shift 6 , black
+        self.r = 0
+        self.g = 0
+        self.b = 0
+        print('Selected: Black')
+    elif k == 38:
+        self.r = 255
+        self.g = 255
+        self.b = 255
+        print('Selected: White')
+    elif k == 69:
+        self.processedImage = self.originalImage.copy()
+        self.paintStopClicked()
+    elif k == ord('h') or k == ord('H'):
+        self.displayMessagePaint()
+
+
+@pyqtSlot()
+def paintStopClicked(self):
+    # self.cap.release()
+    self.originalImage = self.processedImage.copy()
+    self.displayImage()
+    cv2.destroyAllWindows()
+    self.timer.stop()
+
+
+## Paint 2.0 End
+
+
+functions = (
+    initializePaint, paintButtonStartClicked, paintButtonStopClicked, mousePressEvent, mouseMoveEvent,
+    mouseReleaseEvent, paintEvent, action2pxClicked, action3pxClicked,
+    action4pxClicked, action5pxClicked, action7pxClicked, action10pxClicked, actionRedClicked, actionGreenClicked,
+    actionBlackClicked, actionBlueClicked,
+    actionYellowClicked, actionClearClicked, mordifyProcessedImage, nothing, draw, initPaint, displayMessagePaint,
+    paintButtonClicked, updateFrameForPaint,
+    paintStopClicked
+)

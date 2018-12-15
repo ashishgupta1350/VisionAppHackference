@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1423</width>
+    <height>748</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../icons/magic-wand.png</normaloff>../icons/magic-wand.png</iconset>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="4" column="0" colspan="2">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QPushButton" name="paint2Button">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Paint</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="watermarkImage">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Watermark</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="checkWatermarkButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Check Watermark</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="encryptData">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Encyrpt Text-&gt;Img</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="decryptData">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Decypt Text&lt;-Img</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="playButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Play Game</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="paintButtonStart">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Start Paint</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="paintButtonStop">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Stop Paint</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="mobileCamButton">
+        <property name="text">
+         <string>Mobile Cam</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1" colspan="8">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="loadButton">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="mouseTracking">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Load</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="saveButton">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string>Save</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="filters">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="editable">
+           <bool>false</bool>
+          </property>
+          <property name="currentText">
+           <string>Canny</string>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <item>
+           <property name="text">
+            <string>Canny</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ColorSwap</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Grayscale</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>GaussianBlur</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MedianFilter</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BilateralFilter</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="thresholds">
+          <item>
+           <property name="text">
+            <string>BinaryThreshold</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BinaryInverseThreshold</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TozeroThreshold</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TozeroThresholdInverse</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TruncThreshold</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>AdaptiveThreshold_Mean_C</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>AdaptiveThreshold_Gaussian</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>OtsuThreshold</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="4" rowspan="4" colspan="11">
+     <widget class="QLabel" name="imageLabel">
+      <property name="frameShape">
+       <enum>QFrame::WinPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="11">
+     <widget class="QPushButton" name="instructionButton">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Instructions</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="13">
+     <widget class="QPushButton" name="aboutButton">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>About Me?</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" rowspan="2">
+     <widget class="Line" name="line">
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QCheckBox" name="grayCheck">
+      <property name="text">
+       <string>Apply Grayscale?</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3" rowspan="6">
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="5">
+     <widget class="QPushButton" name="updateOriginal">
+      <property name="text">
+       <string>Update Original</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="6">
+     <widget class="QPushButton" name="resetButton">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Reset!</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="11">
+     <widget class="QLineEdit" name="lineEditSliderValue"/>
+    </item>
+    <item row="1" column="7">
+     <widget class="QLabel" name="displayFilter">
+      <property name="frameShape">
+       <enum>QFrame::WinPanel</enum>
+      </property>
+      <property name="text">
+       <string>Current Filter</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="loadVideoButton">
+        <property name="text">
+         <string>Load Video</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="stopVideoButton">
+        <property name="text">
+         <string>Stop Video</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="camButtonStop">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Stop Camera</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="camButtonStart">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Start Camera</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="detectFaceCheckbox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Detect Face</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="detectEye">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Detect Eyes</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="8" colspan="6">
+     <widget class="QSlider" name="slider">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="9">
+     <widget class="QComboBox" name="imageProcessingQComboBox">
+      <item>
+       <property name="text">
+        <string>DetectContours</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PrintCurrentContours</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>GetHistogram</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Get2DHistogram</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>HoughLineTransform</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>InteractiveGrabcut(To Be Done)</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="0" column="10">
+     <widget class="QComboBox" name="cornerDetectionQComboBox">
+      <item>
+       <property name="text">
+        <string>ShiThomsiCornerDetection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FASTCornerDetection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>harrisonCornerDetection</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QPushButton" name="ipCamIpButton">
+      <property name="text">
+       <string>Set IpCam IP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="13">
+     <widget class="QPushButton" name="getCodeButton">
+      <property name="text">
+       <string>Get Code</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="mainMenu">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1423</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="Filters">
+    <property name="title">
+     <string>Tranform Filters</string>
+    </property>
+    <widget class="QMenu" name="MorphTransforms">
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="title">
+      <string>MorphTransform</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons/couple-of-arrows-changing-places.png</normaloff>icons/couple-of-arrows-changing-places.png</iconset>
+     </property>
+     <addaction name="actionDilate"/>
+     <addaction name="actionErode"/>
+     <addaction name="actionMorphological_Gradient"/>
+     <addaction name="actionTop_Hat"/>
+     <addaction name="actionBlack_Hat"/>
+     <addaction name="actionClosing"/>
+     <addaction name="actionOpening"/>
+    </widget>
+    <addaction name="MorphTransforms"/>
+    <addaction name="actionHough_Transforms"/>
+    <addaction name="actionFourier_Transform"/>
+    <addaction name="actionCosine_Transform"/>
+    <addaction name="actionHistograms"/>
+    <addaction name="actionContours"/>
+   </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionLoad"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuPaint_Tools">
+    <property name="title">
+     <string>Paint Tools</string>
+    </property>
+    <widget class="QMenu" name="menuBrushSize">
+     <property name="title">
+      <string>BrushSize</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons/screenshot.png</normaloff>icons/screenshot.png</iconset>
+     </property>
+     <addaction name="action2px"/>
+     <addaction name="action3px"/>
+     <addaction name="action4px"/>
+     <addaction name="action5px"/>
+     <addaction name="action7px"/>
+     <addaction name="action10px"/>
+    </widget>
+    <widget class="QMenu" name="menuBrushColor">
+     <property name="title">
+      <string>BrushColor</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons/edit-interface-sign.png</normaloff>icons/edit-interface-sign.png</iconset>
+     </property>
+     <addaction name="actionRed"/>
+     <addaction name="actionBlack"/>
+     <addaction name="actionGreen"/>
+     <addaction name="actionBlue"/>
+     <addaction name="actionYellow"/>
+    </widget>
+    <widget class="QMenu" name="menuBrushShape">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>BrushShape</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons/three-small-square-shapes.png</normaloff>icons/three-small-square-shapes.png</iconset>
+     </property>
+     <addaction name="actionRound"/>
+     <addaction name="actionRectangle"/>
+     <addaction name="actionEllipse"/>
+     <addaction name="actionMore"/>
+    </widget>
+    <addaction name="menuBrushSize"/>
+    <addaction name="menuBrushColor"/>
+    <addaction name="menuBrushShape"/>
+    <addaction name="actionBrushHardness"/>
+    <addaction name="actionClear_Window"/>
+   </widget>
+   <widget class="QMenu" name="menuAdvanced_Features">
+    <property name="title">
+     <string>Advanced Features</string>
+    </property>
+    <addaction name="actionFaceDetection"/>
+    <addaction name="actionVideo_Analysis"/>
+    <addaction name="actionObject_Detection"/>
+    <addaction name="actionSIFTDetector"/>
+    <addaction name="actionBRIEFDetector"/>
+    <addaction name="actionORBDetector"/>
+    <addaction name="actionFeatureMatching"/>
+    <addaction name="actionHomographyForObjectDetection"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="Filters"/>
+   <addaction name="menuPaint_Tools"/>
+   <addaction name="menuAdvanced_Features"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionDilate">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/increase-size-option.png</normaloff>icons/increase-size-option.png</iconset>
+   </property>
+   <property name="text">
+    <string>Dilate</string>
+   </property>
+  </action>
+  <action name="actionErode">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/increase-size-option.png</normaloff>icons/increase-size-option.png</iconset>
+   </property>
+   <property name="text">
+    <string>Erode</string>
+   </property>
+  </action>
+  <action name="actionTop_Hat">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/increase-size-option.png</normaloff>icons/increase-size-option.png</iconset>
+   </property>
+   <property name="text">
+    <string>Top Hat</string>
+   </property>
+  </action>
+  <action name="actionBlack_Hat">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/increase-size-option.png</normaloff>icons/increase-size-option.png</iconset>
+   </property>
+   <property name="text">
+    <string>Black Hat</string>
+   </property>
+  </action>
+  <action name="actionClosing">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/increase-size-option.png</normaloff>icons/increase-size-option.png</iconset>
+   </property>
+   <property name="text">
+    <string>Closing</string>
+   </property>
+  </action>
+  <action name="actionOpening">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/increase-size-option.png</normaloff>icons/increase-size-option.png</iconset>
+   </property>
+   <property name="text">
+    <string>Opening</string>
+   </property>
+  </action>
+  <action name="actionMorphological_Gradient">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/increase-size-option.png</normaloff>icons/increase-size-option.png</iconset>
+   </property>
+   <property name="text">
+    <string>MorphGradient</string>
+   </property>
+  </action>
+  <action name="actionBrushHardness">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/legal-hammer.png</normaloff>icons/legal-hammer.png</iconset>
+   </property>
+   <property name="text">
+    <string>BrushHardness</string>
+   </property>
+  </action>
+  <action name="action3px">
+   <property name="text">
+    <string>3px</string>
+   </property>
+  </action>
+  <action name="action4px">
+   <property name="text">
+    <string>4px</string>
+   </property>
+  </action>
+  <action name="action5px">
+   <property name="text">
+    <string>5px</string>
+   </property>
+  </action>
+  <action name="action7px">
+   <property name="text">
+    <string>7px</string>
+   </property>
+  </action>
+  <action name="action10px">
+   <property name="text">
+    <string>10px</string>
+   </property>
+  </action>
+  <action name="actionRed">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/red.png</normaloff>icons/red.png</iconset>
+   </property>
+   <property name="text">
+    <string>Red</string>
+   </property>
+  </action>
+  <action name="actionBlack">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/black1.png</normaloff>icons/black1.png</iconset>
+   </property>
+   <property name="text">
+    <string>Black</string>
+   </property>
+  </action>
+  <action name="actionGreen">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/green.png</normaloff>icons/green.png</iconset>
+   </property>
+   <property name="text">
+    <string>Green</string>
+   </property>
+  </action>
+  <action name="actionBlue">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/blue.png</normaloff>icons/blue.png</iconset>
+   </property>
+   <property name="text">
+    <string>Blue</string>
+   </property>
+  </action>
+  <action name="actionYellow">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/yellow.png</normaloff>icons/yellow.png</iconset>
+   </property>
+   <property name="text">
+    <string>Yellow</string>
+   </property>
+  </action>
+  <action name="actionRound">
+   <property name="text">
+    <string>Round</string>
+   </property>
+  </action>
+  <action name="actionRectangle">
+   <property name="text">
+    <string>Rectangle</string>
+   </property>
+  </action>
+  <action name="actionEllipse">
+   <property name="text">
+    <string>Ellipse</string>
+   </property>
+  </action>
+  <action name="actionMore">
+   <property name="text">
+    <string>More</string>
+   </property>
+  </action>
+  <action name="action2px">
+   <property name="text">
+    <string>2px</string>
+   </property>
+  </action>
+  <action name="actionClear_Window">
+   <property name="text">
+    <string>Clear Window</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/screenshot.png</normaloff>icons/screenshot.png</iconset>
+   </property>
+   <property name="text">
+    <string>Load</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/cloud-storage-uploading-option.png</normaloff>icons/cloud-storage-uploading-option.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save As</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/power-button-off.png</normaloff>icons/power-button-off.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionHough_Transforms">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Hough Transforms</string>
+   </property>
+  </action>
+  <action name="actionFaceDetection">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Face Detection(Image Only)</string>
+   </property>
+  </action>
+  <action name="actionHarris_Corner_Detection">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Harris Corner Detection</string>
+   </property>
+  </action>
+  <action name="actionShi_Tomasi_Corner_Detection">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Shi-Tomasi Corner Detection</string>
+   </property>
+  </action>
+  <action name="actionFAST_Corner_Detection">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>FAST Corner Detection</string>
+   </property>
+  </action>
+  <action name="actionVideo_Analysis">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Video Analysis</string>
+   </property>
+  </action>
+  <action name="actionObject_Detection">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Object Detection</string>
+   </property>
+  </action>
+  <action name="actionFourier_Transform">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Fourier Transform</string>
+   </property>
+  </action>
+  <action name="actionCosine_Transform">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Cosine Transform</string>
+   </property>
+  </action>
+  <action name="actionHistograms">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Histograms</string>
+   </property>
+  </action>
+  <action name="actionContours">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Contours</string>
+   </property>
+  </action>
+  <action name="actionSIFTDetector">
+   <property name="text">
+    <string>SIFTDetector</string>
+   </property>
+  </action>
+  <action name="actionBRIEFDetector">
+   <property name="text">
+    <string>BRIEFDetector</string>
+   </property>
+  </action>
+  <action name="actionORBDetector">
+   <property name="text">
+    <string>ORBDetector</string>
+   </property>
+  </action>
+  <action name="actionFeatureMatching">
+   <property name="text">
+    <string>FeatureMatching</string>
+   </property>
+  </action>
+  <action name="actionHomographyForObjectDetection">
+   <property name="text">
+    <string>HomographyForObjectDetection</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
