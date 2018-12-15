@@ -292,6 +292,8 @@ def filterApply(self, currFilter):
 
 
 def threshold(self, currentThreshold):
+    self.lastFilter = currentThreshold
+    # self.thesholdCodeHelper()
     self.processedImage = self.originalImage.copy()
     if self.grayCheck.isChecked:
         if len(self.processedImage.shape) > 2:

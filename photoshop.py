@@ -48,7 +48,7 @@ import paintCode
 import ImageProcessingFilters
 import cameraCode
 import cornerDetection
-
+import videoEncryption
 
 # Global Variables for multi window code
 IPCamURL = ''
@@ -124,6 +124,7 @@ class IPCamDialog(QMainWindow):
     + ImageProcessingFilters.functions
     + cameraCode.functions
     + cornerDetection.functions
+    + videoEncryption.functions
 )
 
 class gui(QMainWindow):
@@ -149,6 +150,28 @@ class gui(QMainWindow):
                                (0, 100, 200)]
         self.codeString = codeString
         self.mainCodeHelper() # To load main code .py to getCode() button
+
+
+
+
+        # Video Encryption
+        self.videoData = None
+        self.videoName = None
+        self.imageFolder = '/EncryptedImages'
+        self.myImage = QPixmap("stenographyImage.jpg")
+        self.imageLabel.setPixmap(self.myImage)
+        self.videoName = 'input.mp4'
+
+        try:
+            self.videoName = 'input.mp4'
+        except:
+            self.videoName = None
+        self.encryptButton.clicked.connect(self.readDataToVideo)
+        self.decryptButton.clicked.connect(self.decryptDataFromVideo)
+        # Video Encryption Code Ends
+
+
+
 
         #IP Cam code
         self.ipCamURL = 'http://192.168.1.5:8080/shot.jpg'
@@ -314,7 +337,15 @@ class gui(QMainWindow):
         codeString = self.codeString
         file.close()
 
-    # End of helper functions
+    def thesholdCodeHelper(self):
+        self.codeString = ''
+        file = open(r'assets/codeSamples/thresholdCode.txt')
+        for line in file:
+            self.codeString = self.codeString + line
+        global codeString
+        codeString = self.codeString
+        file.close()
+
     def imageProcessingCodeHelper(self):
 
         self.codeString = ''
@@ -324,6 +355,8 @@ class gui(QMainWindow):
         global codeString
         codeString = self.codeString
         file.close()
+
+    # End of helper functions
 
     def createMenuBar(self):
 
