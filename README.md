@@ -1,6 +1,11 @@
 # VisionAppHackference Documentation
 Vision App( Photoshop ) is what Arduino is to microcontrollers.
 
+[![Hit-Counter](http://hits.dwyl.io/ashishgupta1350/VisionAppHackference.svg)](http://hits.dwyl.io/ashishgupta1350/VisionAppHackference) 
+[![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://gitHub.com/ashishgupta1350/VisionAppHackference)  [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+
 ### Summary:
 Vision app is a GUI based scalable app that facilitates learning and application of image and video processing without knowing any mathematics and writing a single line of code. Vision app allows application of OpenCV filters from 3- 5 minutes to 2 seconds and helps students (even children) learn and apply image processing on the go. Vision app is also a module oriented platform that allows addition of cloud, cryptography and server modules to be added.
 
