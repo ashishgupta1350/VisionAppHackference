@@ -76,9 +76,24 @@ class textEditor(QMainWindow):
 
     def initializeButtons(self):
         self.okButton.clicked.connect(self.okButtonClicked)
+        self.openCode.clicked.connect(self.openCodeClicked)
 
     def okButtonClicked(self):
         self.close()
+    def openCodeClicked(self):
+
+        # self.lastFilter = 'Video Encryption'
+        # self.initializeSlider()
+        self.codeString = ''
+        file = open(r'assets/codeSamples/thresholdCode.txt')
+        for line in file:
+            self.codeString = self.codeString + line
+        global codeString
+        codeString = self.codeString
+        file.close()
+        file = open('assets/codeSamples/code.txt')
+        file.write(codeString)
+        file.close()
 
 class IPCamDialog(QMainWindow):
 
@@ -256,6 +271,10 @@ class gui(QMainWindow):
 
         self.paint2Button.clicked.connect(self.paintButtonClicked)
 
+
+        # code.py functionality
+        # self.openCode.clicked.connect(self.openCodeInPython)
+
     def getCodeButtonClicked(self):
         codeEditor = textEditor(self)
         codeEditor.show()
@@ -396,6 +415,10 @@ class gui(QMainWindow):
         self.actionBlack_Hat.triggered.connect(self.blackHat)
         self.actionClosing.triggered.connect(self.closing)
         self.actionOpening.triggered.connect(self.opening)
+
+    # Display code in .py File
+    def openCodeInPython(self):
+        pass
 
     # play button code
     def displayMessage(self, message):
