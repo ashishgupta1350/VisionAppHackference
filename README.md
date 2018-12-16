@@ -1,11 +1,25 @@
 # VisionAppHackference
-Hackference Bangalore coded application for easy application of image processing, cryptography and Video stegnography
+Vision App( Photoshop ) is what Arduino is to microcontrollers
+
+Vision app is a GUI based scalable app that facilitates learning and application of image and video processing without knowing any mathematics and writing a single line of code. Vision app allows application of OpenCV filters from 3- 5 minutes to 2 seconds and helps students (even children) learn and apply image processing on the go. Vision app is also a module oriented platform that allows addition of cloud, cryptography and server modules to be added.
 
 
-Documentation:
+### Features
+Image enryption
+Image Processing on:
+1) Images
+2) Videos
+3) Camera Feed
+4) IOT device live feeds
 
+Cryptography
+Gesture Recognition Game
 
-
+### Modules
+Cryptography
+Gesture Recognition Game
+IP Cam
+Get Going With Code!
 
 Images:
 
