@@ -165,7 +165,7 @@ def bringEncryptedDataFromVideo(self):
         return
     print('Video Loaded Successfully')
     # ret, frame = cap.read()
-    endChecker = ''
+    endChecker = '!@#$%^&'
     dataFromImage = ''  # this will contain a binary string that will be read from the image
     dataFromImageReturn = ''
 
@@ -259,7 +259,7 @@ def bringEncryptedDataFromVideo(self):
 
 def readDataToVideo(self):
     print("Here")
-
+    self.encrpytVideoCodeHelper()
     fname, _ = QFileDialog.getOpenFileName(self, 'Open Text File to load text from!', '', 'Text File (*.txt)')
     # fname='2mb.txt'
     data = None

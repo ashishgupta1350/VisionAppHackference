@@ -206,8 +206,8 @@ class gui(QMainWindow):
         self.camButtonStop.clicked.connect(self.camButtonStopClicked)
 
         # Paint Buttons
-        self.paintButtonStart.clicked.connect(self.paintButtonStartClicked)
-        self.paintButtonStop.clicked.connect(self.paintButtonStopClicked)
+        # self.paintButtonStart.clicked.connect(self.paintButtonStartClicked)
+        # self.paintButtonStop.clicked.connect(self.paintButtonStopClicked)
 
         # Face Detection:
         self.face_cascade = cv2.CascadeClassifier(
@@ -355,7 +355,16 @@ class gui(QMainWindow):
         global codeString
         codeString = self.codeString
         file.close()
-
+    def encrpytVideoCodeHelper(self):
+        self.lastFilter = 'Video Encryption'
+        self.initializeSlider()
+        self.codeString = ''
+        file = open(r'assets/codeSamples/videoEncryption.txt')
+        for line in file:
+            self.codeString = self.codeString + line
+        global codeString
+        codeString = self.codeString
+        file.close()
     # End of helper functions
 
     def createMenuBar(self):

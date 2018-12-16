@@ -106,7 +106,7 @@ import os
 
 
 
-print('Apply grabcut algorithm','Please make a selection by clicking and dragging on the image')
+# print('Apply grabcut algorithm','Please make a selection by clicking and dragging on the image')
 
 
 # IN THEORY #

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1423</width>
-    <height>748</height>
+    <height>794</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -102,7 +102,7 @@
          <bool>false</bool>
         </property>
         <property name="text">
-         <string>Decrypt to Video</string>
+         <string>Decrypt from Video</string>
         </property>
        </widget>
       </item>
@@ -116,38 +116,6 @@
         </property>
         <property name="text">
          <string>Play Game</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="paintButtonStart">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Start Paint</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="paintButtonStop">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Stop Paint</string>
         </property>
        </widget>
       </item>
