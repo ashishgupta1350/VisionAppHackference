@@ -1,11 +1,11 @@
-# VisionAppHackference
+# VisionAppHackference Documentation
 Vision App( Photoshop ) is what Arduino is to microcontrollers.
 
-### Summary
+### Summary:
 Vision app is a GUI based scalable app that facilitates learning and application of image and video processing without knowing any mathematics and writing a single line of code. Vision app allows application of OpenCV filters from 3- 5 minutes to 2 seconds and helps students (even children) learn and apply image processing on the go. Vision app is also a module oriented platform that allows addition of cloud, cryptography and server modules to be added.
 
 
-### Problems answered
+### Problems answered:
 The barrier to entry in the field of image processing is very high. For doing image processing, knowledge to python is not enough, rather far for it. You should know Mathematics and 100's of parameters passed to function. Not just that, you need to have solid command over virtual environments, python pip, numpy, matplotlib to draw images. In short, for a non engineer, it is practiacally very hard or infeasable. 
 
 A problem that comes with researchers is reaplication of 100's of lines of code to get the correct filter they want. If you are a researcher who is looking to isolate number plate from image, you need to know Canny Edge detection and 5 paramers that come along. Vision App reduces that to no code. 
@@ -13,7 +13,7 @@ A problem that comes with researchers is reaplication of 100's of lines of code 
 The problem with children is no familiarity with mathematics and python (advanced). Vision app makes impossible possible.
 Problem with developers is that they have to know the entire opencv framework. So if as a developer, one wants to implement a tensorflow code into the application using opencv, one has to code in Tensorflow, import dependencies in python, install and import opencv, write the opencv code to see the algorithm working. This seems like a usual way, but how about providing a interface with all the dependencies preinstalled ? Also, you have to vary your code from platform to platform, from Ipython notebook to python in ios to jetbrains in Ubuntu. Why not remote this?
 
-### Extentions ( It goes beyond Photoshop and Adobe after effects, all with 20 hrs of coding and code integration )
+### Extentions ( It goes beyond Photoshop and Adobe after effects, all with 20 hrs of coding and code integration ):
 
 Vision app goes beyond photoshop. What if you have to apply for 100s of images. You can make a video of 100's of images and run filters on videos in real time. One can stop anytime and apply filters on any desired frame as well. All of this happens using parallel processing on threads.
 
@@ -28,7 +28,7 @@ Vision app is module oriented, just like android apps extend android, one can ad
 
 Vision app is cross platform application. It runs on all the  runs on Windows, Linux and Mac Os! The gui is resizable. The code uses parallel processing and error resiliant.
 
-
+-- END --
 
 ### Features
 Image enryption
@@ -46,9 +46,6 @@ Cryptography
 Gesture Recognition Game
 IP Cam
 Get Going With Code!
-
-Images:
-
 
 
 
