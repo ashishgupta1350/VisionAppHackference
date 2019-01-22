@@ -795,6 +795,42 @@ class gui(QMainWindow):
         self.processedImage = result_image.copy()
         self.displayImage(2)
 
+    def detectFace(self):
+
+        face_cascade = cv2.CascadeClassifier('detector_architectures/haarcascade_frontalface_default.xml')
+        eye_cascade = cv2.CascadeClassifier('detector_architectures/haarcascade_eye.xml')
+
+        img = self.processedImage.copy()
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        roi_color = img
+        for (x, y, w, h) in faces:
+            img = cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+            roi_gray = gray[y:y + h, x:x + w]
+            roi_color = img[y:y + h, x:x + w]
+            eyes = eye_cascade.detectMultiScale(roi_gray)
+            for (ex, ey, ew, eh) in eyes:
+                cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+
+        self.processedImage = img.copy()
+        self.displayImage(2)
+
+    def detectFaceOnly(self):
+        face_cascade = cv2.CascadeClassifier('detector_architectures/haarcascade_frontalface_default.xml')
+        eye_cascade = cv2.CascadeClassifier('detector_architectures/haarcascade_eye.xml')
+
+        img = self.processedImage.copy()
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        roi_color = img
+        for (x, y, w, h) in faces:
+            img = cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+            roi_gray = gray[y:y + h, x:x + w]
+            roi_color = img[y:y + h, x:x + w]
+            
+        self.processedImage = img.copy()
+        self.displayImage(2)
+
 
     def applyFacialFiltersHelper(self, currentTool):
 
@@ -803,13 +839,21 @@ class gui(QMainWindow):
         if currentTool == 'FaceBlur':
 
             print('\n\nFace Blur Called, usage: blurs all the faces')
-
             self.lastFilter = 'FaceBlur'
-
-            # self.initializeSlider(s=20, e=255)
+            self.initializeSlider(s=20, e=255)
             self.faceBlur()
 
-            # change the self.processedImage
+        elif currentTool == 'FaceAndEyeDetection':
+            print('\n\nFace and Eye Detection Called')
+            self.lastFilter = 'FaceAndEyeDetection'
+            self.initializeSlider(s=20, e=255)
+            self.detectFace()
+
+        elif currentTool == 'FaceDetection':
+            print("\n\nFace Detection Called")
+            self.lastFilter = 'Face Detection'
+            self.initializeSlider(s=20,e=255)
+            self.detectFaceOnly()
 
     def applyFacialFilters(self):
         self.filterFlag = 4
