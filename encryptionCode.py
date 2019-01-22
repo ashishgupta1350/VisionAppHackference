@@ -378,14 +378,22 @@ def encryptDataClicked(self):
     fname, _ = QFileDialog.getOpenFileName(self, 'Open Text File', '', 'Text File (*.txt)')
     data = None
     myfile = None
-    if fname:
-        with open(fname, 'r') as myfile:
-            data = myfile.read()
-        # self.waterMarkImageClicked(data)
-        self.encryptImageHelper(data)
-        myfile.close()
-    else:
-        print('Please reselect a valid file!')
+    try:
+        if fname:
+            with open(fname, encoding="utf8", errors='ignore') as myfile:
+                data = myfile.read()
+                data=str(data)
+                # print(data)
+            # self.waterMarkImageClicked(data)
+            self.encryptImageHelper(data)
+            myfile.close()
+        else:
+            print("Please reselect a valid file!")
+    except Exception as e:
+        print(e)
+        print("Invalid file format and/or you need to input a text file")
+        print("")
+
 
 
 def decryptDataClicked(self):

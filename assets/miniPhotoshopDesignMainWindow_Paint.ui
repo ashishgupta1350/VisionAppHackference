@@ -199,6 +199,16 @@
             <string>BilateralFilter</string>
            </property>
           </item>
+          <item>
+           <property name="text">
+            <string>Noising</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Denoising</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item>
@@ -483,6 +493,35 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="8" colspan="2">
+     <widget class="QComboBox" name="faceQComboBox">
+      <item>
+       <property name="text">
+        <string>FaceBlur</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FaceDetection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FaceAndEyeDetection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>EyeDetection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FacialKeyPointExtraction</string>
+       </property>
+      </item>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="mainMenu">
@@ -491,7 +530,7 @@
      <x>0</x>
      <y>0</y>
      <width>1423</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="Filters">

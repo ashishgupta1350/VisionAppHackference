@@ -22,7 +22,7 @@ try:
     QInputDialog, QWidget, QFormLayout, QTextBrowser
 except:
     print("Please install PyQt5 first to run the interface!")
-    exit(1)
+    exit(1                              )
 
 try:
     import matplotlib.pyplot as plt
@@ -204,6 +204,9 @@ class gui(QMainWindow):
         self.filters.activated.connect(self.applyFilter)
         self.thresholds.activated.connect(self.applyThresholds)
         self.imageProcessingQComboBox.activated.connect(self.applyImageProcessing)
+
+        # Face Filters
+        self.faceQComboBox.activated.connect(self.applyFacialFilters)
 
         # update original image (V important)
         self.updateOriginal.clicked.connect(self.updateOriginalImage)
@@ -569,6 +572,12 @@ class gui(QMainWindow):
 
             elif self.lastFilter == 'FASTCornerDetection':
                 self.applyImageProcessingHelper('FASTCornerDetection')
+        elif self.filterFlag == 4:
+            pass
+            # if self.lastFilter == 'DetectContours':
+            #     self.applyImageProcessingHelper('DetectContours')
+            # elif self.lastFilter == 'PrintCurrentContours':
+            #     self.applyImageProcessingHelper('PrintCurrentContours')
 
     @pyqtSlot()
     def lineEditSliderValueClicked(self):
@@ -742,6 +751,71 @@ class gui(QMainWindow):
                 print('Image now available of main screen editing')
 
         cv2.destroyAllWindows()
+
+
+    def faceBlur(self):
+        image = self.processedImage.copy()
+        gray = image
+        if len(image.shape) >= 3:
+            # Convert the image to RGB colorspace
+            # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+            # Convert the RGB  image to grayscale
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+        # Extract the pre-trained face detector from an xml file
+        face_cascade = cv2.CascadeClassifier('detector_architectures/haarcascade_frontalface_default.xml')
+
+        # Detect the faces in image
+        faces = face_cascade.detectMultiScale(image, 1.3, 5)
+        # Print the number of faces detected in the image
+        print('Number of faces detected:', len(faces))
+
+        # Make a copy of the orginal image to draw face detections on
+        image_with_detections = np.copy(image)
+
+        face_crop = faces
+        # Get the bounding box for each detected face
+
+        result_image = image.copy()
+        try:
+            for (x, y, w, h) in faces:
+                # Add a red bounding box to the detections image
+                cv2.rectangle(image_with_detections, (x, y), (x + w, y + h), (255, 0, 0), 3)
+                face_crop = image_with_detections[y:y + h, x:x + w]
+                ## Blur the bounding box around each detected face using an averaging filter and display the result
+                kernel_2 = np.ones((40, 40), np.float32) / 1600
+                blur_2 = cv2.filter2D(face_crop, -1, kernel_2)
+                print("here")
+
+                result_image[y:y + blur_2.shape[0], x:x + blur_2.shape[1]] = blur_2
+        except:
+            print('Unable to detect any face')
+
+        self.processedImage = result_image.copy()
+        self.displayImage(2)
+
+
+    def applyFacialFiltersHelper(self, currentTool):
+
+        self.processedImage = self.originalImage.copy()
+
+        if currentTool == 'FaceBlur':
+
+            print('\n\nFace Blur Called, usage: blurs all the faces')
+
+            self.lastFilter = 'FaceBlur'
+
+            # self.initializeSlider(s=20, e=255)
+            self.faceBlur()
+
+            # change the self.processedImage
+
+    def applyFacialFilters(self):
+        self.filterFlag = 4
+        currentTool = self.faceQComboBox.currentText()
+        self.applyFacialFiltersHelper(currentTool)
+
 
 
 app = QApplication(sys.argv)

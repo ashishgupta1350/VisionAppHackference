@@ -36,10 +36,11 @@ def updateFrame(self):
 
 
 def camButtonStopClicked(self):
-    self.cap.release()
-    self.timer.stop()
-    self.lastFilter = 'Camera Passive'
-    self.initializeSlider()
+    if self.cap:
+        self.cap.release()
+        self.timer.stop()
+        self.lastFilter = 'Camera Passive'
+        self.initializeSlider()
 
 
 ## ************* Camera Code End ************ ##
