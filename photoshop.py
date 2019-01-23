@@ -539,6 +539,23 @@ class gui(QMainWindow):
             elif self.lastFilter == 'Geometric 1':
                 self.filterApply('Geometric 1')
 
+            elif self.lastFilter == "Rotate":
+                self.filterApply("Rotate")
+            elif self.lastFilter == "ScaleUp":
+                self.filterApply("ScaleUp")
+            elif self.lastFilter == "ScaleDown":
+                self.filterApply("ScaleDown")
+            elif self.lastFilter == "InvertHorizontally":
+                self.filterApply("InvertHorizontally")
+            elif self.lastFilter == "InvertVertically":
+                self.filterApply("InvertVertically")
+            elif self.lastFilter == "Noising":
+                self.filterApply("Noising")
+            elif self.lastFilter == "Denoising":
+                self.filterApply("Denoising")
+
+
+
         elif self.filterFlag == int(1):
             # apply thresholds only
             if self.lastFilter == 'BinaryThreshold':
@@ -752,7 +769,9 @@ class gui(QMainWindow):
 
         cv2.destroyAllWindows()
 
+    # Mobile Video Code ends
 
+    # Facial Filters code Start
     def faceBlur(self):
         image = self.processedImage.copy()
         gray = image
@@ -795,7 +814,7 @@ class gui(QMainWindow):
         self.processedImage = result_image.copy()
         self.displayImage(2)
 
-    def detectFace(self):
+    def detectFace(self, faceOnly = True):
 
         face_cascade = cv2.CascadeClassifier('detector_architectures/haarcascade_frontalface_default.xml')
         eye_cascade = cv2.CascadeClassifier('detector_architectures/haarcascade_eye.xml')
@@ -808,29 +827,57 @@ class gui(QMainWindow):
             img = cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
             roi_gray = gray[y:y + h, x:x + w]
             roi_color = img[y:y + h, x:x + w]
-            eyes = eye_cascade.detectMultiScale(roi_gray)
-            for (ex, ey, ew, eh) in eyes:
-                cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+            if not faceOnly:
+                eyes = eye_cascade.detectMultiScale(roi_gray)
+                for (ex, ey, ew, eh) in eyes:
+                    cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
         self.processedImage = img.copy()
         self.displayImage(2)
 
-    def detectFaceOnly(self):
-        face_cascade = cv2.CascadeClassifier('detector_architectures/haarcascade_frontalface_default.xml')
-        eye_cascade = cv2.CascadeClassifier('detector_architectures/haarcascade_eye.xml')
+    def detectFacialKeyPoints(self):
+        print("Requires Premium Access!")
+        pass
 
-        img = self.processedImage.copy()
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-        roi_color = img
+    def videoBlur(self):
+
+        frame = self.processedImage.copy()
+
+        # Keep video stream open
+        # Plot image from camera with detections marked
+        faces = self.face_cascade.detectMultiScale(frame, 1.25, 6)
+
         for (x, y, w, h) in faces:
-            img = cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
-            roi_gray = gray[y:y + h, x:x + w]
-            roi_color = img[y:y + h, x:x + w]
-            
-        self.processedImage = img.copy()
+            kernel= np.ones((40, 40), np.float32) / 1600
+            frame[y:y + w, x:x + h] = cv2.filter2D(frame[y:y + w, x:x + h], -1, kernel)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 120, 150), 5)
+
+        self.processedImage = frame.copy()
+        self.originalImage = self.processedImage.copy()
         self.displayImage(2)
 
+    def videoBlurStart(self):
+        # here we can select the video if we want
+        self.face_cascade = cv2.CascadeClassifier('detector_architectures/haarcascade_frontalface_default.xml')
+        self.cap = cv2.VideoCapture(0)
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.updateBlurFrame)
+        self.timer.start(5)
+
+    def updateBlurFrame(self):
+        ret, self.processedImage = self.cap.read()
+
+        if ret:
+            self.processedImage = cv2.flip(self.processedImage, 1)
+            self.videoBlur()
+        else:
+            print("There is something wrong in reading from your camera")
+    def videoBlurStop(self):
+        try:
+            self.cap.release()
+            self.timer.stop()
+        except:
+            print("No video detected")
 
     def applyFacialFiltersHelper(self, currentTool):
 
@@ -847,20 +894,36 @@ class gui(QMainWindow):
             print('\n\nFace and Eye Detection Called')
             self.lastFilter = 'FaceAndEyeDetection'
             self.initializeSlider(s=20, e=255)
-            self.detectFace()
+            self.detectFace(False)
 
         elif currentTool == 'FaceDetection':
             print("\n\nFace Detection Called")
             self.lastFilter = 'Face Detection'
             self.initializeSlider(s=20,e=255)
-            self.detectFaceOnly()
+            self.detectFace(True)
+
+        elif currentTool == 'FacialKeyPointExtraction':
+            print('\n\nFacial Key Point Extraction Called')
+            self.lastFilter = 'Face Detection'
+            self.initializeSlider(s=20, e=255)
+            self.detectFacialKeyPoints()
+
+        elif currentTool == 'VideoBlur':
+            print('\n\nFacial Video Blur Called')
+            self.lastFilter = 'Video Blur'
+            self.initializeSlider()
+            self.videoBlurStart()
+        elif currentTool == 'VideoBlurStop':
+            self.lastFilter = 'Video Blur Stopped'
+            self.initializeSlider()
+            self.videoBlurStop()
 
     def applyFacialFilters(self):
         self.filterFlag = 4
         currentTool = self.faceQComboBox.currentText()
         self.applyFacialFiltersHelper(currentTool)
 
-
+    # Facial Filters code ends.
 
 app = QApplication(sys.argv)
 window = gui()

@@ -285,9 +285,110 @@ def filterApply(self, currFilter):
         M = np.float32([[1, 0, 200], [0, 1, 250]])
 
         self.processedImage = cv2.warpAffine(self.processedImage, M, (cols, rows))
+    elif currFilter == "Rotate":
+        print("Rotate Called")
+        self.lastFilter = 'Rotate'
+        self.initializeSlider(s=0, e=359)
+        self.processedImage = self.originalImage.copy()
+        rows, cols = self.processedImage.shape[:2]
+        # if self.slider.value() % 2 == 0: self.slider.setValue(self.slider.value() + 1)
+        M = cv2.getRotationMatrix2D((cols/2, rows/2), self.slider.value(), 1)
+        dst = cv2.warpAffine(np.squeeze(self.processedImage), M, (cols,rows))
+        self.processedImage = dst.copy()
+        self.displayImage(2)
+
+    elif currFilter == "ScaleUp":
+        print("ScaleUp Called")
+        self.lastFilter = 'ScaleUp'
+
+        print("Take the slider to full to double the size of the image. Here is the code running behind the scenes"
+              "self.processedImage = cv2.resize(self.processedImage, None, fx=self.slider.value() / 100,"
+              "fy=self.slider.value() / 100, interpolation=cv2.INTER_CUBIC)")
+        self.initializeSlider(s=100, e=200)
+        self.processedImage = self.originalImage.copy()
+        rows, cols = self.processedImage.shape[:2]
+        self.processedImage = cv2.resize(self.processedImage, None, fx=self.slider.value()/100, fy=self.slider.value()/100, interpolation=cv2.INTER_CUBIC)
+        self.displayImage(0)
+
+    elif currFilter == "ScaleDown":
+        print("Scale Down Called")
+        self.lastFilter = 'ScaleDown'
+        self.initializeSlider(s=10, e=100)
+        print("Take the slider to full to keep original size of the image, Here is the code running behind the scenes"
+              "self.processedImage = cv2.resize(self.processedImage, None, fx=self.slider.value() / 100,"
+              "fy=self.slider.value() / 100, interpolation=cv2.INTER_CUBIC)")
+
+        self.processedImage = self.originalImage.copy()
+        rows, cols = self.processedImage.shape[:2]
+        self.processedImage = cv2.resize(self.processedImage, None, fx=self.slider.value() / 100,
+                                         fy=self.slider.value() / 100, interpolation=cv2.INTER_CUBIC)
+        self.displayImage(0)
+
+    elif currFilter == "InvertHorizontally":
+        # Flip the indices of the left right keypoints
+        print("Invert Horizontally Called")
+        self.lastFilter = 'InvertHorizontally'
+        self.initializeSlider(s=10, e=100)
+        self.processedImage = self.processedImage[:, ::-1, :].copy()
+        self.displayImage(0)
+
+
+    elif currFilter == "InvertVertically":
+        # print("Invert Vertically Called")
+        # self.lastFilter = 'InvertVertically'
+        # self.initializeSlider(s=10, e=100)
+        # # flip_indices = [
+        # #     (0, 2), (1, 3),
+        # #     (4, 8), (5, 9), (6, 10), (7, 11),
+        # #     (12, 16), (13, 17), (14, 18), (15, 19),
+        # #     (22, 24), (23, 25),
+        # # ]
+        # self.processedImage = self.processedImage[:, ::-1, :].copy()
+        # self.displayImage(0)
+
+        print("Invert Vertically Called")
+        self.lastFilter = 'InvertVertically'
+        self.initializeSlider(s=0, e=180)
+        self.processedImage = self.originalImage.copy()
+        rows, cols = self.processedImage.shape[:2]
+        M = cv2.getRotationMatrix2D((cols / 2, rows / 2), 180, 1)
+        dst = cv2.warpAffine(np.squeeze(self.processedImage), M, (cols, rows))
+        self.processedImage = dst.copy()
+        self.displayImage(2)
+
+    elif currFilter == "Noising":
+        noise_level = 40
+        if len(self.processedImage.shape) == 3:
+            noise = np.random.randn(self.processedImage.shape[0], self.processedImage.shape[1], self.processedImage.shape[2]) * noise_level
+            image_with_noise = self.processedImage.copy()
+            # Add this noise to the array image copy
+            image_with_noise = image_with_noise + noise
+            # Convert back to uint8 format
+            image_with_noise = np.asarray([np.uint8(np.clip(i, 0, 255)) for i in image_with_noise])
+            self.processedImage = image_with_noise.copy()
+        elif len(self.processedImage.shape)==2:
+            noise = np.random.randn(self.processedImage.shape[0], self.processedImage.shape[1]) * noise_level
+            image_with_noise = self.processedImage.copy()
+            # Add this noise to the array image copy
+            image_with_noise = image_with_noise + noise
+            # Convert back to uint8 format
+            image_with_noise = np.asarray([np.uint8(np.clip(i, 0, 255)) for i in image_with_noise])
+            self.processedImage = image_with_noise.copy()
+        self.displayImage(0)
+
+
+    elif currFilter == "Denoising":
+        print("Denoising Called")
+        print("Due to extensive calculation and CPU load, the slider is disabled for this filter!")
+        self.lastFilter = 'Denoising'
+        self.initializeSlider(s=10, e=100)
+        self.processedImage = cv2.fastNlMeansDenoisingColored(self.processedImage, None, 17, 25, 7, 21)
+        self.displayImage(2)
+
     elif currFilter:
         # if current filter is not none
-        self.threshold(self.lastFilter)
+        # self.threshold(self.lastFilter)
+        pass
     self.displayImage(2)
 
 

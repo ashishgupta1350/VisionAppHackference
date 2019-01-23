@@ -22,6 +22,389 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="11">
+     <widget class="QPushButton" name="instructionButton">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Instructions</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="8" colspan="2">
+     <widget class="QComboBox" name="faceQComboBox">
+      <item>
+       <property name="text">
+        <string>FaceBlur</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FaceDetection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FaceAndEyeDetection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>EyeDetection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FacialKeyPointExtraction</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>VideoBlur</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>VideoBlurStop</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="0" column="13">
+     <widget class="QPushButton" name="aboutButton">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>About Me?</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QCheckBox" name="grayCheck">
+      <property name="text">
+       <string>Apply Grayscale?</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="7">
+     <widget class="QLabel" name="displayFilter">
+      <property name="frameShape">
+       <enum>QFrame::WinPanel</enum>
+      </property>
+      <property name="text">
+       <string>Current Filter</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QPushButton" name="ipCamIpButton">
+      <property name="text">
+       <string>Set IpCam IP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="6">
+     <widget class="QPushButton" name="resetButton">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Reset!</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="13">
+     <widget class="QPushButton" name="getCodeButton">
+      <property name="text">
+       <string>Get Code</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="8" colspan="6">
+     <widget class="QSlider" name="slider">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="11">
+     <widget class="QLineEdit" name="lineEditSliderValue"/>
+    </item>
+    <item row="1" column="10">
+     <widget class="QComboBox" name="instaFiltersQComboBox">
+      <item>
+       <property name="text">
+        <string>InstagramFilter</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Cartoonish</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PutGlasses</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>RandomFilter</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="1" column="5">
+     <widget class="QPushButton" name="updateOriginal">
+      <property name="text">
+       <string>Update Original</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" rowspan="2">
+     <widget class="Line" name="line">
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" colspan="8">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="loadButton">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="mouseTracking">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Load</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="saveButton">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string>Save</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="filters">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="editable">
+           <bool>false</bool>
+          </property>
+          <property name="currentText">
+           <string>Canny</string>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <item>
+           <property name="text">
+            <string>Canny</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ColorSwap</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Grayscale</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>GaussianBlur</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MedianFilter</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BilateralFilter</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Noising</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Denoising</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Rotate</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ScaleUp</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ScaleDown</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>InvertHorizontally</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>InvertVertically</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="thresholds">
+          <item>
+           <property name="text">
+            <string>BinaryThreshold</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BinaryInverseThreshold</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TozeroThreshold</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TozeroThresholdInverse</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TruncThreshold</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>AdaptiveThreshold_Mean_C</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>AdaptiveThreshold_Gaussian</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>OtsuThreshold</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="9">
+     <widget class="QComboBox" name="imageProcessingQComboBox">
+      <item>
+       <property name="text">
+        <string>DetectContours</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PrintCurrentContours</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>GetHistogram</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Get2DHistogram</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>HoughLineTransform</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>InteractiveGrabcut(To Be Done)</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="0" column="10">
+     <widget class="QComboBox" name="cornerDetectionQComboBox">
+      <item>
+       <property name="text">
+        <string>ShiThomsiCornerDetection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FASTCornerDetection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>harrisonCornerDetection</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="1" column="3" rowspan="6">
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4" rowspan="4" colspan="11">
+     <widget class="QLabel" name="imageLabel">
+      <property name="frameShape">
+       <enum>QFrame::WinPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
     <item row="4" column="0" colspan="2">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
@@ -128,224 +511,6 @@
       </item>
      </layout>
     </item>
-    <item row="0" column="1" colspan="8">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QPushButton" name="loadButton">
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="mouseTracking">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Load</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="saveButton">
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>Save</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="filters">
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="editable">
-           <bool>false</bool>
-          </property>
-          <property name="currentText">
-           <string>Canny</string>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <item>
-           <property name="text">
-            <string>Canny</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>ColorSwap</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Grayscale</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>GaussianBlur</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>MedianFilter</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>BilateralFilter</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Noising</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Denoising</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="thresholds">
-          <item>
-           <property name="text">
-            <string>BinaryThreshold</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>BinaryInverseThreshold</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>TozeroThreshold</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>TozeroThresholdInverse</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>TruncThreshold</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>AdaptiveThreshold_Mean_C</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>AdaptiveThreshold_Gaussian</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>OtsuThreshold</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item row="3" column="4" rowspan="4" colspan="11">
-     <widget class="QLabel" name="imageLabel">
-      <property name="frameShape">
-       <enum>QFrame::WinPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="11">
-     <widget class="QPushButton" name="instructionButton">
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="text">
-       <string>Instructions</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="13">
-     <widget class="QPushButton" name="aboutButton">
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="text">
-       <string>About Me?</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" rowspan="2">
-     <widget class="Line" name="line">
-      <property name="cursor">
-       <cursorShape>ArrowCursor</cursorShape>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QCheckBox" name="grayCheck">
-      <property name="text">
-       <string>Apply Grayscale?</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3" rowspan="6">
-     <widget class="Line" name="line_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="5">
-     <widget class="QPushButton" name="updateOriginal">
-      <property name="text">
-       <string>Update Original</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="6">
-     <widget class="QPushButton" name="resetButton">
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="text">
-       <string>Reset!</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="11">
-     <widget class="QLineEdit" name="lineEditSliderValue"/>
-    </item>
-    <item row="1" column="7">
-     <widget class="QLabel" name="displayFilter">
-      <property name="frameShape">
-       <enum>QFrame::WinPanel</enum>
-      </property>
-      <property name="text">
-       <string>Current Filter</string>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="0" colspan="2">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -415,112 +580,6 @@
        </widget>
       </item>
      </layout>
-    </item>
-    <item row="2" column="8" colspan="6">
-     <widget class="QSlider" name="slider">
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="9">
-     <widget class="QComboBox" name="imageProcessingQComboBox">
-      <item>
-       <property name="text">
-        <string>DetectContours</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>PrintCurrentContours</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>GetHistogram</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Get2DHistogram</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>HoughLineTransform</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>InteractiveGrabcut(To Be Done)</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="0" column="10">
-     <widget class="QComboBox" name="cornerDetectionQComboBox">
-      <item>
-       <property name="text">
-        <string>ShiThomsiCornerDetection</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>FASTCornerDetection</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>harrisonCornerDetection</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QPushButton" name="ipCamIpButton">
-      <property name="text">
-       <string>Set IpCam IP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="13">
-     <widget class="QPushButton" name="getCodeButton">
-      <property name="text">
-       <string>Get Code</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="8" colspan="2">
-     <widget class="QComboBox" name="faceQComboBox">
-      <item>
-       <property name="text">
-        <string>FaceBlur</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>FaceDetection</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>FaceAndEyeDetection</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>EyeDetection</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>FacialKeyPointExtraction</string>
-       </property>
-      </item>
-     </widget>
     </item>
    </layout>
   </widget>
